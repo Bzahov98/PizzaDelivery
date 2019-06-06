@@ -4,5 +4,6 @@
         <item screen="pizzadelivery_Customer.browse"/>
         <item screen="pizzadelivery_Dish.browse"/>
         <item screen="pizzadelivery_Employer.browse"/>
+        <item screen="pizzadelivery_Product.browse"/>
     </menu>
 </menu-config>
