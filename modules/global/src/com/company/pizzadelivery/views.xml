@@ -37,21 +37,14 @@
         <property name="order" view="_minimal">
             <property name="createTime"/>
             <property name="arrivalTime"/>
-            <property name="totalPrice"/>
             <property name="discount"/>
-            <property name="instructions"/>
-            <property name="isSuccessful"/>
         </property>
-        <property name="dish_products" view="_minimal">
-            <property name="name"/>
-            <property name="amount"/>
-        </property>
+        <property name="dish_products" view="_minimal"/>
+        <property name="pic" view="_minimal"/>
     </view>
     <view entity="pizzadelivery_Dish" name="dish-edit-view" extends="_local">
-        <property name="dish_products" view="_minimal">
-            <property name="name"/>
-            <property name="amount"/>
-        </property>
+        <property name="dish_products" view="_minimal"/>
+        <property name="pic" view="_minimal"/>
     </view>
     <view entity="pizzadelivery_Employer" name="employer-view" extends="_local">
         <property name="user" view="_minimal">

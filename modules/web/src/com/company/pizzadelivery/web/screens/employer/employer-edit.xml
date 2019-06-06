@@ -22,6 +22,7 @@
                     </actions>
                 </pickerField>
                 <lookupField id="typeField" property="type"/>
+                <checkBox id="isAvailableField" property="isAvailable"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

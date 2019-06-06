@@ -1,0 +1,2 @@
+alter table PIZZADELIVERY_DISH add constraint FK_PIZZADELIVERY_DISH_ON_PIC foreign key (PIC_ID) references SYS_FILE(ID);
+create index IDX_PIZZADELIVERY_DISH_ON_PIC on PIZZADELIVERY_DISH (PIC_ID);

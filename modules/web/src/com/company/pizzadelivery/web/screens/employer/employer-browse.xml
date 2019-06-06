@@ -34,6 +34,7 @@
             <columns>
                 <column id="user"/>
                 <column id="type"/>
+                <column id="isAvailable"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

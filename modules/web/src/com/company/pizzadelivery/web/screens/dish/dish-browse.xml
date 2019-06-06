@@ -37,6 +37,7 @@
                 <column id="price"/>
                 <column id="type"/>
                 <column id="order"/>
+                <column id="pic"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

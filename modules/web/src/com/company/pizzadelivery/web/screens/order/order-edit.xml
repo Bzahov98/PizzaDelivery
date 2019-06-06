@@ -18,8 +18,8 @@
                 <column width="250px">
                     <dateField id="createTimeField" property="createTime"/>
                     <dateField id="arrivalTimeField" property="arrivalTime"/>
-                    <textField id="totalPriceField" property="totalPrice"/>
-                    <textField id="discountField" property="discount"/>
+                    <textField id="totalPriceField" property="totalPrice" editable="false"/>
+                    <textField id="discountField" property="discount" editable="false"/>
                     <textField id="instructionsField" property="instructions"/>
                     <textField id="adressField" property="adress"/>
                     <checkBox id="isSuccessfulField" property="isSuccessful"/>

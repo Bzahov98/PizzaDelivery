@@ -35,7 +35,7 @@ public class Order extends StandardEntity {
 	protected String adress;
 
 	@Column(name = "IS_SUCCESSFUL")
-	protected Boolean isSuccessful;
+	protected Boolean isSuccessful = false;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CUSTOMER_ID")

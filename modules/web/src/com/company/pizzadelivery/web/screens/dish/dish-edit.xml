@@ -8,6 +8,7 @@
                   class="com.company.pizzadelivery.entity.Dish"
                   view="dish-edit-view">
             <loader/>
+            <instance id="picDc" property="pic"/>
             <collection id="dish_productsDc" property="dish_products"/>
         </instance>
     </data>
@@ -20,6 +21,7 @@
                 <timeField id="timeForCookField" property="timeForCook"/>
                 <textField id="priceField" property="price"/>
                 <lookupField id="typeField" property="type"/>
+                <upload id="picField" fileStoragePutMode="IMMEDIATE" property="pic" showFileName="true"/>
             </column>
         </form>
         <groupBox id="dish_productsBox" caption="msg://com.company.pizzadelivery.entity/Dish.dish_products">

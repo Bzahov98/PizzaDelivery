@@ -1,7 +1,11 @@
 package com.company.pizzadelivery.entity;
 
+import com.haulmont.chile.core.annotations.Composition;
 import com.haulmont.chile.core.annotations.NamePattern;
+import com.haulmont.cuba.core.entity.FileDescriptor;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.OnDelete;
+import com.haulmont.cuba.core.global.DeletePolicy;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -35,6 +39,16 @@ public class Dish extends StandardEntity {
 			inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
 	@ManyToMany
 	protected List<Product> dish_products;
+
+	@Composition
+	@OnDelete(DeletePolicy.CASCADE)
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "PIC_ID")
+	protected FileDescriptor pic;
+
+	public FileDescriptor getPic() { return pic; }
+
+	public void setPic(FileDescriptor pic) { this.pic = pic; }
 
 	public List<Product> getDish_products() { return dish_products; }
 

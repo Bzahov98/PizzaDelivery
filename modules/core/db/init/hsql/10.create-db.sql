@@ -55,6 +55,7 @@ create table PIZZADELIVERY_EMPLOYER (
     --
     USER_ID varchar(36),
     TYPE_ varchar(50),
+    IS_AVAILABLE boolean,
     --
     primary key (ID)
 )^
@@ -75,6 +76,7 @@ create table PIZZADELIVERY_DISH (
     PRICE varchar(255),
     TYPE_ integer,
     ORDER_ID varchar(36),
+    PIC_ID varchar(36),
     --
     primary key (ID)
 )^

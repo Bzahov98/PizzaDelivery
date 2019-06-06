@@ -1,0 +1,5 @@
+@import "havana-ext";
+
+@mixin com_company_pizzadelivery {
+  @include com_company_pizzadelivery-havana-ext;
+}
