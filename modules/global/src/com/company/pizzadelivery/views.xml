@@ -76,4 +76,12 @@
             <property name="email"/>
         </property>
     </view>
+    <view entity="pizzadelivery_Product" name="product-view" extends="_local">
+        <property name="dishes" view="_minimal">
+            <property name="timeForCook"/>
+        </property>
+    </view>
+    <view entity="pizzadelivery_Product" name="product-edit-view" extends="_local">
+        <property name="dishes" view="_minimal"/>
+    </view>
 </views>
