@@ -24,6 +24,13 @@ public class Dish extends StandardEntity {
 
 	@Column(name = "TYPE_")
 	protected Integer type;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ORDER_ID")
+	protected Order order;
+
+	public Order getOrder() { return order; }
+
+	public void setOrder(Order order) { this.order = order; }
 
 	public DishType getType() { return type == null ? null : DishType.fromId(type); }
 
