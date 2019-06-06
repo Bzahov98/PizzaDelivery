@@ -84,4 +84,37 @@
     <view entity="pizzadelivery_Product" name="product-edit-view" extends="_local">
         <property name="dishes" view="_minimal"/>
     </view>
+    <view entity="pizzadelivery_Order" name="order-view" extends="_local">
+        <property name="customer" view="_minimal">
+            <property name="user" view="_minimal"/>
+            <property name="phone"/>
+            <property name="adress"/>
+            <property name="ordersCount"/>
+        </property>
+        <property name="allDIshes" view="_minimal">
+            <property name="timeForCook"/>
+        </property>
+        <property name="employer" view="_minimal">
+            <property name="user" view="_minimal"/>
+            <property name="type"/>
+        </property>
+        <property name="deliveryEmployer" view="_minimal">
+            <property name="user" view="_minimal"/>
+            <property name="type"/>
+        </property>
+    </view>
+    <view entity="pizzadelivery_Order" name="order-edit-view" extends="_local">
+        <property name="customer" view="_minimal">
+            <property name="user" view="_minimal"/>
+        </property>
+        <property name="allDIshes" view="_minimal"/>
+        <property name="employer" view="_minimal">
+            <property name="user" view="_minimal"/>
+            <property name="type"/>
+        </property>
+        <property name="deliveryEmployer" view="_minimal">
+            <property name="user" view="_minimal"/>
+            <property name="type"/>
+        </property>
+    </view>
 </views>
