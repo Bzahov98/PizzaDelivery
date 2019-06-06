@@ -1,11 +1,13 @@
 package com.company.pizzadelivery.entity;
 
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.security.entity.User;
 
 import javax.persistence.*;
 import java.util.List;
 
+@NamePattern("%s %s|user,type")
 @Table(name = "PIZZADELIVERY_EMPLOYER")
 @Entity(name = "pizzadelivery_Employer")
 public class Employer extends StandardEntity {

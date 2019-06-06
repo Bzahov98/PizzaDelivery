@@ -36,7 +36,7 @@ create table PIZZADELIVERY_ORDER (
     ADRESS varchar(255),
     IS_SUCCESSFUL boolean,
     CUSTOMER_ID varchar(36),
-    EMPLOYER_ID varchar(36),
+    CLERK_EMPLOYER_ID varchar(36),
     DELIVERY_EMPLOYER_ID varchar(36),
     --
     primary key (ID)

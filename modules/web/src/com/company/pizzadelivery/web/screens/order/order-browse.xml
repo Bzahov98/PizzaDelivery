@@ -40,7 +40,7 @@
                 <column id="adress"/>
                 <column id="isSuccessful"/>
                 <column id="customer"/>
-                <column id="employer"/>
+                <column id="clerkEmployer"/>
                 <column id="deliveryEmployer"/>
             </columns>
             <rowsCount/>

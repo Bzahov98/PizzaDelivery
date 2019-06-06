@@ -94,7 +94,7 @@
         <property name="allDIshes" view="_minimal">
             <property name="timeForCook"/>
         </property>
-        <property name="employer" view="_minimal">
+        <property name="clerkEmployer" view="_minimal">
             <property name="user" view="_minimal"/>
             <property name="type"/>
         </property>
@@ -108,7 +108,7 @@
             <property name="user" view="_minimal"/>
         </property>
         <property name="allDIshes" view="_minimal"/>
-        <property name="employer" view="_minimal">
+        <property name="clerkEmployer" view="_minimal">
             <property name="user" view="_minimal"/>
             <property name="type"/>
         </property>

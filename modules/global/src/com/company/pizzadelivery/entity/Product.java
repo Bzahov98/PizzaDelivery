@@ -1,11 +1,13 @@
 package com.company.pizzadelivery.entity;
 
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+@NamePattern("%s %s|name,amount")
 @Table(name = "PIZZADELIVERY_PRODUCT")
 @Entity(name = "pizzadelivery_Product")
 public class Product extends StandardEntity {
@@ -16,6 +18,7 @@ public class Product extends StandardEntity {
 
 	@Column(name = "AMOUNT")
 	protected BigDecimal amount;
+
 	@JoinTable(name = "PIZZADELIVERY_DISH_PRODUCT_LINK",
 			joinColumns = @JoinColumn(name = "PRODUCT_ID"),
 			inverseJoinColumns = @JoinColumn(name = "DISH_ID"))

@@ -1,5 +1,6 @@
 package com.company.pizzadelivery.entity;
 
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+@NamePattern("%s %s %s %s|isSuccessful,instructions,customer,totalPrice")
 @Table(name = "PIZZADELIVERY_ORDER")
 @Entity(name = "pizzadelivery_Order")
 public class Order extends StandardEntity {
@@ -43,20 +45,20 @@ public class Order extends StandardEntity {
 	protected List<Dish> allDIshes;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "EMPLOYER_ID")
-	protected Employer employer;
+	@JoinColumn(name = "CLERK_EMPLOYER_ID")
+	protected Employer clerkEmployer;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "DELIVERY_EMPLOYER_ID")
 	protected Employer deliveryEmployer;
 
+	public Employer getClerkEmployer() { return clerkEmployer; }
+
+	public void setClerkEmployer(Employer clerkEmployer) { this.clerkEmployer = clerkEmployer; }
+
 	public Employer getDeliveryEmployer() { return deliveryEmployer; }
 
 	public void setDeliveryEmployer(Employer deliveryEmployer) { this.deliveryEmployer = deliveryEmployer; }
-
-	public Employer getEmployer() { return employer; }
-
-	public void setEmployer(Employer employer) { this.employer = employer; }
 
 	public List<Dish> getAllDIshes() { return allDIshes; }
 
