@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persisOrdertence-unit name="PizzaDelivery" transaction-type="RESOURCE_LOCAL">
+
+        <class>com.company.pizzadelivery.entity.Customer</class>
+        <class>com.company.pizzadelivery.entity.Employer</class>
+        <class>com.company.pizzadelivery.entity.Dish</class>
+        <class>com.company.pizzadelivery.entity.Order</class>
+        <class>com.company.pizzadelivery.entity.Product</class>
+    </persisOrdertence-unit>
+</persistence>
