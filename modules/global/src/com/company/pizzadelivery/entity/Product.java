@@ -2,10 +2,9 @@ package com.company.pizzadelivery.entity;
 
 import com.haulmont.cuba.core.entity.StandardEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Table(name = "PIZZADELIVERY_PRODUCT")
 @Entity(name = "pizzadelivery_Product")
@@ -17,6 +16,15 @@ public class Product extends StandardEntity {
 
 	@Column(name = "AMOUNT")
 	protected BigDecimal amount;
+	@JoinTable(name = "PIZZADELIVERY_DISH_PRODUCT_LINK",
+			joinColumns = @JoinColumn(name = "PRODUCT_ID"),
+			inverseJoinColumns = @JoinColumn(name = "DISH_ID"))
+	@ManyToMany
+	protected List<Dish> dishes;
+
+	public List<Dish> getDishes() { return dishes; }
+
+	public void setDishes(List<Dish> dishes) { this.dishes = dishes; }
 
 	public BigDecimal getAmount() { return amount; }
 

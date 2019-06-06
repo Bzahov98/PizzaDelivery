@@ -4,6 +4,7 @@ import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.security.entity.User;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "PIZZADELIVERY_EMPLOYER")
 @Entity(name = "pizzadelivery_Employer")
@@ -16,6 +17,13 @@ public class Employer extends StandardEntity {
 
 	@Column(name = "TYPE_")
 	protected String type;
+
+	@OneToMany(mappedBy = "employer")
+	protected List<Order> allOrders;
+
+	public List<Order> getAllOrders() { return allOrders; }
+
+	public void setAllOrders(List<Order> allOrders) { this.allOrders = allOrders; }
 
 	public EmployerType getType() { return type == null ? null : EmployerType.fromId(type); }
 
