@@ -10,22 +10,37 @@ import java.util.Date;
 @Entity(name = "pizzadelivery_Order")
 public class Order extends StandardEntity {
 	private static final long serialVersionUID = -7904423074756413665L;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATE_TIME")
 	protected Date createTime;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "ARRIVAL_TIME")
 	protected Date arrivalTime;
+
 	@Column(name = "TOTAL_PRICE")
 	protected BigDecimal totalPrice;
+
 	@Column(name = "DISCOUNT")
 	protected Integer discount;
+
 	@Column(name = "INSTRUCTIONS")
 	protected String instructions;
+
 	@Column(name = "ADRESS")
 	protected String adress;
+
 	@Column(name = "IS_SUCCESSFUL")
 	protected Boolean isSuccessful;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CUSTOMER_ID")
+	protected Customer customer;
+
+	public Customer getCustomer() { return customer; }
+
+	public void setCustomer(Customer customer) { this.customer = customer; }
 
 	public Boolean getIsSuccessful() { return isSuccessful; }
 

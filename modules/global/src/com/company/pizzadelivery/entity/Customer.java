@@ -5,6 +5,7 @@ import com.haulmont.cuba.security.entity.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Table(name = "PIZZADELIVERY_CUSTOMER")
 @Entity(name = "pizzadelivery_Customer")
@@ -24,6 +25,13 @@ public class Customer extends StandardEntity {
 
 	@Column(name = "ORDERS_COUNT")
 	protected Integer ordersCount;
+
+	@OneToMany(mappedBy = "customer")
+	protected List<Order> allOrders;
+
+	public List<Order> getAllOrders() { return allOrders; }
+
+	public void setAllOrders(List<Order> allOrders) { this.allOrders = allOrders; }
 
 	public Integer getOrdersCount() { return ordersCount; }
 
