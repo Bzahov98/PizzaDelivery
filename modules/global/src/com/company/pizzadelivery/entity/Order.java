@@ -41,9 +41,18 @@ public class Order extends StandardEntity {
 
 	@OneToMany(mappedBy = "order")
 	protected List<Dish> allDIshes;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "EMPLOYER_ID")
 	protected Employer employer;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "DELIVERY_EMPLOYER_ID")
+	protected Employer deliveryEmployer;
+
+	public Employer getDeliveryEmployer() { return deliveryEmployer; }
+
+	public void setDeliveryEmployer(Employer deliveryEmployer) { this.deliveryEmployer = deliveryEmployer; }
 
 	public Employer getEmployer() { return employer; }
 

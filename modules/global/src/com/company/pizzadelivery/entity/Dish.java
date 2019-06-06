@@ -5,6 +5,7 @@ import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @NamePattern("%s %s %s|name,price,type")
 @Table(name = "PIZZADELIVERY_DISH")
@@ -24,9 +25,20 @@ public class Dish extends StandardEntity {
 
 	@Column(name = "TYPE_")
 	protected Integer type;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ORDER_ID")
 	protected Order order;
+
+	@JoinTable(name = "PIZZADELIVERY_DISH_PRODUCT_LINK",
+			joinColumns = @JoinColumn(name = "DISH_ID"),
+			inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
+	@ManyToMany
+	protected List<Product> dish_products;
+
+	public List<Product> getDish_products() { return dish_products; }
+
+	public void setDish_products(List<Product> dish_products) { this.dish_products = dish_products; }
 
 	public Order getOrder() { return order; }
 

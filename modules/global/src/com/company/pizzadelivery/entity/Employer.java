@@ -18,7 +18,7 @@ public class Employer extends StandardEntity {
 	@Column(name = "TYPE_")
 	protected String type;
 
-	@OneToMany(mappedBy = "employer")
+	@OneToMany(mappedBy = "clerkEmployer")
 	protected List<Order> allOrders;
 
 	public List<Order> getAllOrders() { return allOrders; }
