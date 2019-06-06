@@ -5,6 +5,7 @@ import com.haulmont.cuba.core.entity.StandardEntity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "PIZZADELIVERY_ORDER")
 @Entity(name = "pizzadelivery_Order")
@@ -37,6 +38,20 @@ public class Order extends StandardEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CUSTOMER_ID")
 	protected Customer customer;
+
+	@OneToMany(mappedBy = "order")
+	protected List<Dish> allDIshes;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "EMPLOYER_ID")
+	protected Employer employer;
+
+	public Employer getEmployer() { return employer; }
+
+	public void setEmployer(Employer employer) { this.employer = employer; }
+
+	public List<Dish> getAllDIshes() { return allDIshes; }
+
+	public void setAllDIshes(List<Dish> allDIshes) { this.allDIshes = allDIshes; }
 
 	public Customer getCustomer() { return customer; }
 
