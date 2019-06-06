@@ -53,4 +53,27 @@
             <property name="amount"/>
         </property>
     </view>
+    <view entity="pizzadelivery_Employer" name="employer-view" extends="_local">
+        <property name="user" view="_minimal">
+            <property name="firstName"/>
+            <property name="lastName"/>
+            <property name="email"/>
+        </property>
+        <property name="allOrders" view="_minimal">
+            <property name="createTime"/>
+            <property name="arrivalTime"/>
+            <property name="totalPrice"/>
+            <property name="discount"/>
+            <property name="instructions"/>
+            <property name="adress"/>
+            <property name="isSuccessful"/>
+        </property>
+    </view>
+    <view entity="pizzadelivery_Employer" name="employer-edit-view" extends="_local">
+        <property name="user" view="_minimal">
+            <property name="firstName"/>
+            <property name="lastName"/>
+            <property name="email"/>
+        </property>
+    </view>
 </views>
