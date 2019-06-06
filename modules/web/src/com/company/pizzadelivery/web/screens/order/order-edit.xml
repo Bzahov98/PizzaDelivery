@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.pizzadelivery.web.screens.order">
+    <data>
+        <instance id="orderDc"
+                  class="com.company.pizzadelivery.entity.Order"
+                  view="order-edit-view">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scrollBox" spacing="true">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="orderDc">
+                <column width="250px">
+                    <dateField id="createTimeField" property="createTime"/>
+                    <dateField id="arrivalTimeField" property="arrivalTime"/>
+                    <textField id="totalPriceField" property="totalPrice"/>
+                    <textField id="discountField" property="discount"/>
+                    <textField id="instructionsField" property="instructions"/>
+                    <textField id="adressField" property="adress"/>
+                    <checkBox id="isSuccessfulField" property="isSuccessful"/>
+                    <pickerField id="customerField" property="customer">
+                        <actions>
+                            <action id="lookup" type="picker_lookup"/>
+                            <action id="clear" type="picker_clear"/>
+                        </actions>
+                    </pickerField>
+                    <pickerField id="employerField" property="employer">
+                        <actions>
+                            <action id="lookup" type="picker_lookup"/>
+                            <action id="clear" type="picker_clear"/>
+                        </actions>
+                    </pickerField>
+                    <pickerField id="deliveryEmployerField" property="deliveryEmployer">
+                        <actions>
+                            <action id="lookup" type="picker_lookup"/>
+                            <action id="clear" type="picker_clear"/>
+                        </actions>
+                    </pickerField>
+                </column>
+            </form>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
