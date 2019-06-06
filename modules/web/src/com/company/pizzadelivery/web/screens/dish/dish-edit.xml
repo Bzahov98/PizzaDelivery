@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.pizzadelivery.web.screens.dish">
+    <data>
+        <instance id="dishDc"
+                  class="com.company.pizzadelivery.entity.Dish"
+                  view="dish-edit-view">
+            <loader/>
+            <collection id="dish_productsDc" property="dish_products"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="dishDc">
+            <column width="250px">
+                <textField id="nameField" property="name"/>
+                <timeField id="timeForCookField" property="timeForCook"/>
+                <textField id="priceField" property="price"/>
+                <lookupField id="typeField" property="type"/>
+            </column>
+        </form>
+        <groupBox id="dish_productsBox" caption="msg://com.company.pizzadelivery.entity/Dish.dish_products">
+            <table id="dish_productsTable" dataContainer="dish_productsDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="amount"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="dish_productsTable.add"/>
+                    <button action="dish_productsTable.exclude"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
