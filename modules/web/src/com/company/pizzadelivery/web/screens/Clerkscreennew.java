@@ -17,10 +17,10 @@ import com.haulmont.cuba.gui.screen.*;
 import javax.inject.Inject;
 import java.util.List;
 
-@UiController("pizzadelivery_Clerkscreen")
-@UiDescriptor("ClerkScreen.xml")
+@UiController("pizzadelivery_Clerkscreennew")
+@UiDescriptor("ClerkScreenNew.xml")
 @LoadDataBeforeShow
-public class Clerkscreen extends Screen {
+public class Clerkscreennew extends Screen {
 	private int ordersSize;
 	private int newPosition = 0;
 	private Employer selectedEmpl;
@@ -65,16 +65,36 @@ public class Clerkscreen extends Screen {
 		changeOrder();
 	}
 
-	
-	
 	private void changeOrder() {
-		List<Order> list = dataManager.load(Order.class).view("order-edit-view").list();
+		List<Order> list = dataManager
+				.load(Order.class)
+				.query("select o\n" +
+						"                        from pizzadelivery_Order o\n" +
+						"                        where o.isSuccessful = true\n" +
+						"                        order by o.createTime asc")
+				.view("order-edit-view")
+				.list();
 
-		ordersSize = list.size() - 1;
-		if ( (ordersSize < newPosition) || (newPosition < 0)) {
+		if (list == null || list.isEmpty()) {
+			notifications
+					.create()
+					.withCaption("No more Orders")
+					.withPosition(Notifications.Position.BOTTOM_RIGHT)
+					.show();
 			newPosition = 0;
+			ordersSize = 0;
+			return;
 		}
-		
+		ordersSize = list.size() - 1;
+		if ((ordersSize < newPosition) || (newPosition < 0)) {
+			newPosition = 0;
+			notifications
+					.create()
+					.withCaption("Reset Orders")
+					.withPosition(Notifications.Position.BOTTOM_RIGHT)
+					.show();
+		}
+
 		orderDc.setItem(list.get(newPosition));
 
 		//commentDl.setParameter("OrderId", OrderDC.getItem().getId());
@@ -85,9 +105,12 @@ public class Clerkscreen extends Screen {
 	@Subscribe("deliversTable")
 	private void onDeliversTableSelection(Table.SelectionEvent<Employer> event) {
 		selectedEmpl = deliversTable.getSingleSelected();
-		if (selectedEmpl != null){
+		if (selectedEmpl != null) {
 			deliveryEmployerField.setValue(selectedEmpl);
-		}else notifications.create().withCaption("Please select Employer").show();
+		} else notifications.create()
+				.withCaption("Please select Employer")
+				.withPosition(Notifications.Position.BOTTOM_RIGHT)
+				.show();
 	}
 
 	@Subscribe("deliversTable")
@@ -95,8 +118,27 @@ public class Clerkscreen extends Screen {
 
 	}
 
+	@Subscribe("acceptBtn")
+	private void onAcceptBtnClick(Button.ClickEvent event) {
+		dataManager.commit(orderDc.getItem());
+		newPosition++;
+		notifications
+				.create()
+				.withCaption("Order saved and sent to deliver")
+				.withPosition(Notifications.Position.BOTTOM_RIGHT)
+				.show();
+		changeOrder();
+		deliverDL.load();
+	}
 
-	
-	
-	
+	@Subscribe("denyBtn")
+	private void onDenyBtnClick(Button.ClickEvent event) {
+		notifications.create()
+				.withCaption("Order not changed")
+				.withPosition(Notifications.Position.BOTTOM_RIGHT)
+				.show();
+		changeOrder();
+		deliverDL.load();
+	}
+
 }

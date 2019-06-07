@@ -2,6 +2,109 @@
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="msg://caption"
         messagesPack="com.company.pizzadelivery.web.screens.deliverscreen">
-    <layout>
+    <data>
+        <instance id="orderDc"
+                  class="com.company.pizzadelivery.entity.Order"
+                  view="order-edit-view">
+            <loader id="orderDL"/>
+        </instance>
+        <collection id="orderCollDC" class="com.company.pizzadelivery.entity.Order" view="order-edit-view">
+            <loader id="orderCollDL" >
+                <query>
+                    <![CDATA[
+                        select o
+                        from pizzadelivery_Order o
+                        where o.isSuccessful = false
+                        order by o.createTime asc
+                    ]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <layout height="100%" width="100%">
+        <split id="horsSplit" orientation="horizontal" width="100%" height="100%" pos="60">
+            <split id="vertSplit" height="100%" width="99%" orientation="vertical" pos="80" minSplitPosition="80%"
+                   responsive="true">
+
+                <grid spacing="true" width="100%" height="100%" margin="0" align="MIDDLE_CENTER">
+                    <columns>
+                        <column flex="1"/>
+                        <column flex="10"/>
+                        <column flex="1"/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <button id="previousOrder" width="100%" align="MIDDLE_CENTER" height="100%"
+                                    caption="&#9664;" responsive="true"/>
+                            <scrollBox id="scrollBox" spacing="true">
+                                <form id="form" dataContainer="orderDc" width="100%" >
+                                    <column width="250px" >
+                                        <dateField id="createTimeField" property="createTime"/>
+                                        <dateField id="arrivalTimeField" property="arrivalTime"/>
+                                        <textField id="totalPriceField" property="totalPrice" editable="false"/>
+                                        <textField id="discountField" property="discount" editable="false"/>
+                                        <textField id="instructionsField" property="instructions"/>
+                                        <textField id="adressField" property="adress"/>
+                                        <checkBox id="isSuccessfulField" property="isSuccessful"/>
+                                        <pickerField id="customerField" property="customer">
+                                            <actions>
+                                                <action id="lookup" type="picker_lookup"/>
+                                                <action id="clear" type="picker_clear"/>
+                                            </actions>
+                                        </pickerField>
+                                        <pickerField id="employerField" property="clerkEmployer" editable="false">
+                                            <actions>
+                                                <action id="lookup" type="picker_lookup"/>
+                                                <action id="clear" type="picker_clear"/>
+                                            </actions>
+                                        </pickerField>
+                                        <pickerField id="deliveryEmployerField" property="deliveryEmployer">
+                                            <actions>
+                                                <action id="lookup" type="picker_lookup"/>
+                                                <action id="clear" type="picker_clear"/>
+                                            </actions>
+                                        </pickerField>
+                                    </column>
+
+                                </form>
+                            </scrollBox>
+                            <button id="next" width="100%" align="MIDDLE_LEFT" height="100%" responsive="true"
+                                    caption="&#9654;"/>
+                        </row>
+                    </rows>
+                </grid>
+                <hbox id="saveBox" width="100%" height="100%" responsive="true" visible="true" spacing="true">
+                    <button id="acceptBtn" align="MIDDLE_CENTER" caption="accept"/>
+                    <button id="denyBtn" align="MIDDLE_CENTER" caption="deny"/>
+                    <!-- <button action="windowCommitAndClose" align="MIDDLE_CENTER"/>
+                    <button action="windowClose" align="MIDDLE_CENTER"/>-->
+                </hbox>
+            </split>
+            <split id="deliversSplit" width="100%" height="100%"
+                   orientation="vertical" pos="99" responsive="true">
+                <table id="ordersTable" width="100%" height="100%"  dataContainer="orderCollDC" responsive="true">
+                    <columns>
+                        <column id="instructions" caption="Order Info"/>
+                        <column id="isSuccessful" caption="is Successful"/>
+                        <column id="createTime" caption="created On"/>
+                        <!-- column id="date" dateFormat="HH:mm DD:MM:YY"/-->
+                    </columns>
+                </table>
+                <grid spacing="true" width="100%" height="100%" visible="false">
+                    <columns>
+                        <column flex="3"/>
+                        <column flex="1"/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <textArea id="newCommTextArea" align="MIDDLE_LEFT" caption="Add new comment:" width="100%"
+                                      datatype="string"/>
+                            <button id="sendCM" width="100%" align="MIDDLE_LEFT" height="30%" caption="send"/>
+                        </row>
+                    </rows>
+                </grid>
+            </split>
+
+        </split>
     </layout>
 </window>

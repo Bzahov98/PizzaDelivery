@@ -6,7 +6,8 @@
         <item screen="pizzadelivery_Employer.browse"/>
         <item screen="pizzadelivery_Product.browse"/>
         <item screen="pizzadelivery_Order.browse"/>
-        <item screen="pizzadelivery_Clerkscreen"/>
         <item screen="pizzadelivery_Deliverscreen"/>
+        <item screen="pizzadelivery_Clerkscreennew"/>
+        <item screen="pizzadelivery_Customerscreen"/>
     </menu>
 </menu-config>
