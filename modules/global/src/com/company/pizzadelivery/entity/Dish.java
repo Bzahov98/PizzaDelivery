@@ -46,6 +46,13 @@ public class Dish extends StandardEntity {
 	@JoinColumn(name = "PIC_ID")
 	protected FileDescriptor pic;
 
+	@Column(name = "IS_ADDED")
+	protected Boolean isAdded = false;
+
+	public Boolean getIsAdded() { return isAdded; }
+
+	public void setIsAdded(Boolean isAdded) { this.isAdded = isAdded; }
+
 	public FileDescriptor getPic() { return pic; }
 
 	public void setPic(FileDescriptor pic) { this.pic = pic; }

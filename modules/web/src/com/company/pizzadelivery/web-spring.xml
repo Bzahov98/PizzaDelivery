@@ -7,5 +7,14 @@
     <context:component-scan base-package="com.company.pizzadelivery"/>
     
     <gui:screens base-packages="com.company.pizzadelivery.web"/>
+    <bean id="pizzadelivery_proxyCreator" class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="serverSelector" ref="cuba_ServerSelector"/>
+        <property name="remoteServices">
+            <map>
+                <entry key="pizzadelivery_GetSystemUserService"
+                       value="com.company.pizzadelivery.service.GetSystemUserService"/>
+            </map>
+        </property>
+    </bean>
 
 </beans>

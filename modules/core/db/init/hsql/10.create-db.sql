@@ -77,6 +77,7 @@ create table PIZZADELIVERY_DISH (
     TYPE_ integer,
     ORDER_ID varchar(36),
     PIC_ID varchar(36),
+    IS_ADDED boolean,
     --
     primary key (ID)
 )^

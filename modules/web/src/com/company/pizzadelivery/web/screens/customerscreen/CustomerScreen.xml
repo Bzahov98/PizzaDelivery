@@ -3,12 +3,17 @@
         caption="msg://caption"
         messagesPack="com.company.pizzadelivery.web.screens.customerscreen">
     <data>
-        <collection id="commentDc" class="com.company.pizzadelivery.entity.Dish" view="dish-edit-view">
-            <loader id="commentDl">
+        <instance id="orderDC"
+                  class="com.company.pizzadelivery.entity.Order"
+                  view="order-edit-view">
+            <loader id="orderDL"/>
+        </instance>
+        <collection id="dishesDC" class="com.company.pizzadelivery.entity.Dish" view="dish-edit-view">
+            <loader id="dishesDL">
                 <query>
                     <![CDATA[
                         select d from pizzadelivery_Dish d
-
+                        where d.type = :DishType
                         order by d.price desc
                     ]]>
                 </query>
@@ -18,7 +23,8 @@
 
     <layout height="100%" width="100%">
         <split id="horsSplit" orientation="horizontal" width="100%" height="100%" pos="60">
-            <split id="vertSplit" height="100%" width="100%" orientation="vertical" pos="45">
+            <split id="vertSplit" height="100%" width="99%" orientation="vertical" pos="80" minSplitPosition="80%"
+                   responsive="true">
 
                 <grid spacing="true" width="100%" height="100%" margin="0" align="MIDDLE_CENTER">
                     <columns>
@@ -28,28 +34,61 @@
                     </columns>
                     <rows>
                         <row>
-                            <button id="previousPost" width="100%" align="MIDDLE_CENTER" height="100%" responsive="true"
-                                    caption="Prev"/>
-                            <textField id="postField" width="100%" height="100%"
-                                       editable="false" align="MIDDLE_CENTER" datatype="string" dataContainer="postDC"
-                                       property="text" responsive="true"/>
-                            <button id="nextPost" width="100%" align="MIDDLE_LEFT" height="100%" responsive="true"
-                                    caption="Next"/>
+                            <button id="previousOrder" width="100%" align="MIDDLE_CENTER" height="100%"
+                                    caption="&#9664;" responsive="true"/>
+                            <scrollBox id="scrollBox" spacing="true">
+                                <form id="form" dataContainer="orderDC">
+                                    <column width="250px">
+                                        <dateField id="createTimeField" property="createTime" editable="false"/>
+                                        <dateField id="arrivalTimeField" property="arrivalTime" editable="false"/>
+                                        <textField id="totalPriceField" property="totalPrice" editable="false"/>
+                                        <textField id="discountField" property="discount" editable="false"/>
+                                        <textField id="instructionsField" property="instructions"/>
+                                        <textField id="adressField" property="adress"/>
+                                        <checkBox id="isSuccessfulField" property="isSuccessful" editable="false"/>
+                                        <pickerField id="customerField" property="customer" editable="false"
+                                                     visible="false">
+                                            <actions>
+                                                <action id="lookup" type="picker_lookup"/>
+                                                <action id="clear" type="picker_clear"/>
+                                            </actions>
+                                        </pickerField>
+                                    </column>
+                                </form>
+                            </scrollBox>
+                            <button id="next" width="100%" align="MIDDLE_LEFT" height="100%" responsive="true"
+                                    caption="&#9654;"/>
                         </row>
                     </rows>
                 </grid>
-                <image id="postImage" width="100%" height="100%" dataContainer="postDC" property="pic"/>
+                <hbox id="saveBox" width="100%" height="100%" responsive="true" visible="true" spacing="true">
+                    <button id="acceptBtn" align="MIDDLE_CENTER" caption="accept"/>
+                    <button id="denyBtn" align="MIDDLE_CENTER" caption="deny"/>
+                    <!-- <button action="windowCommitAndClose" align="MIDDLE_CENTER"/>
+                    <button action="windowClose" align="MIDDLE_CENTER"/>-->
+                </hbox>
             </split>
-            <split id="commentsSplit" width="100%" height="100%"
-                   orientation="vertical" pos="70" responsive="true">
-                <table id="commentTable" width="100%" height="100%" dataContainer="commentDc" responsive="true">
+            <split id="deliversSplit" width="100%" height="100%"
+                   orientation="vertical" pos="99" responsive="true">
+                <table id="dishTable" width="100%" height="100%" dataContainer="dishesDC" responsive="true">
+                    <actions>
+                        <action id="addCart" caption="🞧 Add "/>
+                        <action id="removeCart" caption="➖ Remove"/>
+                    </actions>
                     <columns>
-                        <column id="user.pic" caption="User avatar"/>
-                        <column id="text"/>
-                        <column id="date" dateFormat="HH:mm DD:MM:YY"/>
+                        <column id="pic" caption="Dish avatar"/>
+                        <column id="name" caption="name" editable="false"/>
+                        <column id="type" caption="Type"/>
+                        <column id="price" caption="Price" />
+                        <column id="isAdded" caption="In cart" type="boolean"/>
+                         <!-- column id="date" dateFormat="HH:mm DD:MM:YY"/-->
                     </columns>
+                    <buttonsPanel >
+                        <button action="dishTable.addCart" align="MIDDLE_LEFT"/>
+                        <button action="dishTable.removeCart" align="MIDDLE_RIGHT"/>
+                    </buttonsPanel>
                 </table>
-                <grid spacing="true" width="100%" height="100%">
+                <grid spacing="true" width="100%" height="100%" visible="false">
                     <columns>
                         <column flex="3"/>
                         <column flex="1"/>
@@ -57,7 +96,7 @@
                     <rows>
                         <row>
                             <textArea id="newCommTextArea" align="MIDDLE_LEFT" caption="Add new comment:" width="100%"
-                                      datatype="string"/>
+                                      datatype="string" rowspan="1" colspan="1"/>
                             <button id="sendCM" width="100%" align="MIDDLE_LEFT" height="30%" caption="send"/>
                         </row>
                     </rows>
